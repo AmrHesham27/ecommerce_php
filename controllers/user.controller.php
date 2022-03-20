@@ -1,5 +1,6 @@
 <?php
 require_once '../auth/auth.php';
+require_once '../db/db.controller.php';
 
 class User {
     public static function mySQLCheck($con, $op){
@@ -9,11 +10,7 @@ class User {
         };
     }
     public static function register($con, $userName, $email, $phoneNumber, $password, $gender, $userType){
-        $sql = "insert into users (userName, email, password, phoneNumber, gender, userType) 
-        values ('$userName','$email','$phoneNumber', '$password', '$gender', '$userType')";
-        $op =  mysqli_query($con,$sql);
-        self::mySQLCheck($con, $op);
-        $_SESSION['mssg'] = 'You were registered successfully';
+        SQL::insert();
     }
     public static function editUser($con, $userName, $email, $phoneNumber, $gender){
         Auth::checkLogin();

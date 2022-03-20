@@ -7,19 +7,19 @@ class SQL {
             exit();
         };
     }
-    function insert($con, $table, $columns, $values, $successMssg){
+    public static function insert($con, $table, $columns, $values, $successMssg){
         $sql = "INSERT INTO $table $columns VALUES $values"; 
         $op =  mysqli_query($con,$sql);
         self::doQuery($con, $op);
         $_SESSION['mssg'] = $successMssg;
     }
-    function delete($con, $table, $condition, $successMssg){
+    public static function delete($con, $table, $condition, $successMssg){
         $sql = "DELETE FROM $table WHERE $condition;";
         $op =  mysqli_query($con,$sql);
         self::doQuery($con, $op);
         $_SESSION['mssg'] = $successMssg;
     }
-    function update($con, $table, $setValues, $condition, $successMssg){
+    public static function update($con, $table, $setValues, $condition, $successMssg){
         $sql = 
         "UPDATE $table SET $setValues WHERE $condition;";
         $op =  mysqli_query($con,$sql);
