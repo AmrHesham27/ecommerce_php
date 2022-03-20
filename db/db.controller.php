@@ -13,18 +13,18 @@ class SQL {
         self::checkQuery($con, $op);
         if($successMssg) $_SESSION['mssg'] = $successMssg;
     }
-    public static function delete($con, $table, $condition, $successMssg){
+    public static function delete($con, $table, $condition, $successMssg = null){
         $sql = "DELETE FROM $table WHERE $condition;";
         $op =  mysqli_query($con,$sql);
         self::checkQuery($con, $op);
-        $_SESSION['mssg'] = $successMssg;
+        if($successMssg) $_SESSION['mssg'] = $successMssg;
     }
-    public static function update($con, $table, $setValues, $condition, $successMssg){
+    public static function update($con, $table, $setValues, $condition, $successMssg = null){
         $sql = 
         "UPDATE $table SET $setValues WHERE $condition;";
         $op =  mysqli_query($con,$sql);
         self::checkQuery($con, $op);
-        $_SESSION['mssg'] = $successMssg;
+        if($successMssg) $_SESSION['mssg'] = $successMssg;
     }
     public static function read($con, $columns, $table, $condition){
         $sql = 

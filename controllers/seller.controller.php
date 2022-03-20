@@ -37,6 +37,16 @@ class Seller {
             'Your product was edited successfully'
         );
     }
+    public static function showSellerProducts($con){
+        Auth::checkSeller();
+        $user_id = $_SESSION['userId'];
+        $result = SQL::read(
+            $con,
+            'productName, category_id, price, description, image',
+            'products',
+            "id = '$user_id'"
+        );
+    }
 }
 
 ?>
