@@ -93,9 +93,7 @@ class User {
         SQL::delete(
             $con,
             'messages',
-            "id='$id', from_id='$user_id'",
-            
-
+            "id='$id', from_id='$user_id'"
         );
     }
 }
