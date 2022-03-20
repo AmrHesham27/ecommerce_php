@@ -46,6 +46,7 @@ class Seller {
             'products',
             "id = '$user_id'"
         );
+        return $result;
     }
 }
 

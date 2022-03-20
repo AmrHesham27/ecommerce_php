@@ -13,6 +13,14 @@ class Product {
             "('$user_id', '$product_id', '$product_category_id')"
         );
     }
+    public static function showProduct($con, $product_id){
+        SQL::read(
+            $con,
+            '(productName, category_id, price, seller_id, description, image)',
+            'products',
+            "id = '$product_id'"
+        );
+    }
 }
 
 ?>
