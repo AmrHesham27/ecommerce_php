@@ -26,6 +26,15 @@ class SQL {
         self::doQuery($con, $op);
         $_SESSION['mssg'] = $successMssg;
     }
+    public static function read($con, $columns, $table, $condition){
+        $sql = 
+        "SELECT $columns FROM $table WHERE $condition;";
+        $op =  mysqli_query($con,$sql);
+        self::doQuery($con, $op);
+        $no_of_rows = mysqli_num_rows($op);
+        $data = mysqli_fetch_assoc($op);
+        return [$no_of_rows, $data];
+    }
 }
 
 ?>
