@@ -14,13 +14,32 @@ class Product {
         );
     }
     public static function showProduct($con, $product_id){
-        SQL::read(
+        $result = SQL::read(
             $con,
             '(productName, category_id, price, seller_id, description, image)',
             'products',
             "id = '$product_id'"
         );
+        return $result;
     }
-}
+    public static function showCategoryProducts($con, $category_id){
+        $result = SQL::read(
+            $con, 
+            '(productName, category_id, price, seller_id, description, image)',
+            'products',
+            "category_id  = '$category_id'"
+        );
+        return $result;
+    }
+    public static function showCategories($con){
+        $result = SQL::read(
+            $con,
+            '(category_name)',
+            'categories',
+            '1=1'
+        );
+        return $result;
+    }
+};
 
 ?>
