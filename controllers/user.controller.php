@@ -77,5 +77,25 @@ class User {
             'Your address was deleted successfully'
         );
     }
+    public static function sendMessage($con, $to_id, $text){
+        Auth::checkLogin();
+        $user_id = $_SESSION['userId'];
+        SQL::insert(
+            $con, 
+            'messages',
+            "(to_id, from_id, text)",
+            "('$to_id','$user_id','$text')"
+        );
+    }
+    public static function deleteMessage($con, $id){
+        Auth::checkLogin();
+        $user_id = $_SESSION['userId'];
+        SQL::delete(
+            $con,
+            'messages',
+            "id='$user_id', "
+
+        );
+    }
 }
 ?>

@@ -7,11 +7,11 @@ class SQL {
             exit();
         };
     }
-    public static function insert($con, $table, $columns, $values, $successMssg){
+    public static function insert($con, $table, $columns, $values, $successMssg = null){
         $sql = "INSERT INTO $table $columns VALUES $values"; 
         $op =  mysqli_query($con,$sql);
         self::checkQuery($con, $op);
-        $_SESSION['mssg'] = $successMssg;
+        if($successMssg) $_SESSION['mssg'] = $successMssg;
     }
     public static function delete($con, $table, $condition, $successMssg){
         $sql = "DELETE FROM $table WHERE $condition;";
