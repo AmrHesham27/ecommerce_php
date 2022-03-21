@@ -1,7 +1,7 @@
 <?php
 
-require_once '../db/db.controller.php';
-require_once '../auth/auth.php';
+require_once 'db/db.controller.php';
+require_once 'auth/auth.php';
 
 class Product {
     public static function addView($con, $product_id, $product_category_id ){
@@ -16,16 +16,16 @@ class Product {
     public static function showProduct($con, $product_id){
         $result = SQL::read(
             $con,
-            '(productName, category_id, price, seller_id, description, image)',
+            'productName, category_id, price, seller_id, productDescription , productImage',
             'products',
-            "id = '$product_id'"
+            "id = $product_id"
         );
         return $result;
     }
     public static function showCategoryProducts($con, $category_id){
         $result = SQL::read(
             $con, 
-            '(productName, category_id, price, seller_id, description, image)',
+            'productName, category_id, price, seller_id, description, image',
             'products',
             "category_id  = '$category_id'"
         );
@@ -34,9 +34,18 @@ class Product {
     public static function showCategories($con){
         $result = SQL::read(
             $con,
-            '(category_name)',
+            'category_name',
             'categories',
             '1=1'
+        );
+        return $result;
+    }
+    public static function showProductRatings($con, $product_id){
+        $result = SQL::read(
+            $con,
+            'user_id, stars, text',
+            'ratings',
+            "product_id = '$product_id'"
         );
         return $result;
     }

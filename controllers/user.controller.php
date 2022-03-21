@@ -1,7 +1,7 @@
 <?php
 
-require_once '../auth/auth.php';
-require_once '../db/db.controller.php';
+require_once 'auth/auth.php';
+require_once 'db/db.controller.php';
 
 class User {
     public static function register($con, $userName, $email, $phoneNumber, $password, $gender, $userType){
@@ -73,7 +73,7 @@ class User {
         SQL::delete(
             $con, 
             'user_addresses',
-            "addressId='$addressId', user_id='$user_id'",
+            "addressId='$addressId' AND user_id='$user_id'",
             'Your address was deleted successfully'
         );
     }
@@ -93,7 +93,7 @@ class User {
         SQL::delete(
             $con,
             'messages',
-            "id='$id', from_id='$user_id'"
+            "id='$id' AND from_id='$user_id'"
         );
     }
 }

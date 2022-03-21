@@ -1,9 +1,9 @@
 <?php 
-require_once './checkNotLogged.php';
-require_once './components/header.php';
-require_once './components/navBar.php';
-require_once './dbConnection.php';
-require_once '../helpers/validation.php';
+require_once 'auth/auth.php';
+require_once 'components/header.php';
+require_once 'components/navBar.php';
+require_once 'db/db.connection.php';
+require_once 'helpers/validation.php';
 
 if( $_SERVER['REQUEST_METHOD'] == "POST"){
     // validate data
