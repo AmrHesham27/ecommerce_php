@@ -52,6 +52,8 @@ class Seller {
     public static function addDiscount($con, $product_id, $percent, $expiry_date){
         Auth::checkSeller();
         $user_id = $_SESSION['userId'];
+
+        // left join with discounts table
         $today = date("Ymd");
         $sql = "SELECT * FROM products 
         LEFT JOIN (SELECT * FROM discounts WHERE expiry_date > '$today') AS r
@@ -83,6 +85,42 @@ class Seller {
             "Your discount was added"
         );
         
+    }
+    function deleteDiscount($con, $product_id){
+        Auth::checkSeller();
+        $today = date("Ymd");
+        $user_id = $_SESSION['userId'];
+
+        // check this seller has this product and it is not already expired
+        $sql = "SELECT * FROM products 
+        LEFT JOIN (SELECT * FROM discounts WHERE expiry_date > '$today') AS r
+        ON products.id = r.product_id
+        WHERE products.id = $product_id AND products.seller_id = $user_id";
+        $op =  mysqli_query($con,$sql);
+        SQL::checkQuery($con, $op);
+        $no_of_rows = mysqli_num_rows($op);
+        $data = mysqli_fetch_assoc($op);
+
+        if($no_of_rows == 0){
+            $_SESSION['mssg'] = "You choosed wrong product";
+            return;
+        }
+
+        if(!$data['percent']){
+            $_SESSION['mssg'] = "You do not have discount on this product";
+            return;
+        }
+
+        $discountId = $data['id'];
+
+        SQL::update(
+            $con,
+            'discounts',
+            "expiry_date = $today",
+            "id = $discountId"
+        );
+
+
     }
 }
 

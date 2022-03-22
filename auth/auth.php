@@ -21,6 +21,12 @@ class Auth {
             exit();
         }
     }
+    public static function checkNotLoggedIn(){
+        if($_SESSION['userType']){
+            header("Location: index.php");
+            exit();
+        }
+    }
 } 
 
 ?>
