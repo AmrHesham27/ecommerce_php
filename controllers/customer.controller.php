@@ -1,6 +1,6 @@
 <?php
-require_once 'auth/auth.php';
-require_once 'db/db.controller.php';
+require_once __DIR__ .'/../auth/auth.php';
+require_once __DIR__ .'/../db/db.controller.php';
 
 class Customer {
     /** Ratings */

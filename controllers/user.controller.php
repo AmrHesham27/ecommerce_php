@@ -1,7 +1,7 @@
 <?php
 
-require_once 'auth/auth.php';
-require_once 'db/db.controller.php';
+require_once __DIR__ .'/../auth/auth.php';
+require_once __DIR__ .'/../db/db.controller.php';
 
 class User {
     public static function register($con, $userName, $email, $phoneNumber, $password, $gender, $userType){
@@ -37,9 +37,10 @@ class User {
             $_SESSION['mssg'] = 'Email or Password is wrong, please try again';
             return;
         };
-        $data = $result[1];
-        $_SESSION['userType'] = $data['userType'];
-        $_SESSION['userId'] = $data['id'];
+        $op = $result[1];
+        $row = mysqli_fetch_assoc($op); 
+        $_SESSION['userType'] = $row['userType'];
+        $_SESSION['userId'] = $row['id'];
         header("Location: index.php");
     }
     public static function logout(){
