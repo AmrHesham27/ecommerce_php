@@ -37,6 +37,10 @@ class Validation {
             return str_replace(array('[',']'), '', $value);
         }
     }
-    
+    public static function checkPhone ($value) {
+        if( !preg_match("/^01[0-2,5][0-9]{8}$/",$value)){
+            self::$errors['phone'] = "please enter valid phone";
+        }
+    }
 }
 ?>

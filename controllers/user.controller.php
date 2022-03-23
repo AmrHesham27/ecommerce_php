@@ -98,5 +98,14 @@ class User {
             "id='$id' AND from_id='$user_id'"
         );
     }
+    public static function showUserTypes($con){
+        $result = SQL::read(
+            $con,
+            '*',
+            'user_types',
+            '1=1'
+        );
+        return $result;
+    }
 }
 ?>

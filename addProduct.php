@@ -8,9 +8,6 @@
     require_once './helpers/functions.php';
 
     /* logic start */
-    $_SESSION['userType'] = 'seller';
-    $_SESSION['userId'] = 2;
-    
     Auth::checkSeller();
     $categories = Product::showCategories($con);
     $op = $categories[1];
@@ -60,6 +57,7 @@
                         <div class="d-flex flex-column my-3">
                             <label>Category</label>
                             <select name="Category">
+                                <option disabled value="">--choose category</option>
                                 <?php
                                     while($row = mysqli_fetch_assoc($op)){
                                     echo "
