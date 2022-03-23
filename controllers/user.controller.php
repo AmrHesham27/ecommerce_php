@@ -27,20 +27,20 @@ class User {
     }
     public static function login($con, $email, $password){
         $hashed_password = md5($password);
-        $result = SQL::read(
-            $con,
-            'id, userType',
-            'users',
-            "email = '$email' AND userPassword = '$hashed_password'"
-        );
-        if ($result[0] != 1){
+        //
+        $sql = "SELECT u.id, t.userType FROM users AS u LEFT JOIN user_types AS t ON u.userType = t.id
+        WHERE email = '$email' AND userPassword = '$hashed_password'";
+        $op =  mysqli_query($con,$sql);
+        SQL::checkQuery($con, $op);
+        $result = mysqli_fetch_assoc($op);
+        $no_of_rows = mysqli_num_rows($op);
+        echo $no_of_rows;
+        if ($no_of_rows != 1){
             $_SESSION['mssg'] = 'Email or Password is wrong, please try again';
             return;
         };
-        $op = $result[1];
-        $row = mysqli_fetch_assoc($op); 
-        $_SESSION['userType'] = $row['userType'];
-        $_SESSION['userId'] = $row['id'];
+        $_SESSION['userType'] = $result['userType'];
+        $_SESSION['userId'] = $result['id'];
         header("Location: index.php");
     }
     public static function logout(){
