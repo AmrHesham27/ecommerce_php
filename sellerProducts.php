@@ -1,7 +1,5 @@
 <?php
    session_start();
-   $_SESSION['userType'] = 'seller';
-   $_SESSION['userId'] = 2;
    require_once './controllers/seller.controller.php';
    require_once './auth/auth.php';
    require './db/db.connection.php';
