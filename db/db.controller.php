@@ -32,8 +32,7 @@ class SQL {
         $op =  mysqli_query($con,$sql);
         self::checkQuery($con, $op);
         $no_of_rows = mysqli_num_rows($op);
-        $data = mysqli_fetch_assoc($op);
-        return [$no_of_rows, $data];
+        return [$no_of_rows, $op];
     }
 }
 

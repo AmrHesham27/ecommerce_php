@@ -9,8 +9,8 @@ class Seller {
         $user_id = $_SESSION['userId'];
         SQL::insert(
             $con,
-            'users',
-            '(productName, category_id, price, seller_id, description, image)',
+            'products',
+            '(productName, category_id, price, seller_id, productDescription , productImage )',
             "('$productName','$category_id','$price', '$user_id', '$description', '$image')",
             'Your product was added successfully'
         );
@@ -40,13 +40,15 @@ class Seller {
     public static function showSellerProducts($con){
         Auth::checkSeller();
         $user_id = $_SESSION['userId'];
-        $result = SQL::read(
-            $con,
-            'productName, category_id, price, description, image',
-            'products',
-            "id = '$user_id'"
-        );
-        return $result;
+        $today = date("Ymd");
+        $sql = "SELECT * FROM products 
+        LEFT JOIN (SELECT * FROM discounts WHERE expiry_date > '$today') AS r
+        ON products.id = r.product_id
+        WHERE products.seller_id = $user_id";
+        $op =  mysqli_query($con,$sql);
+        SQL::checkQuery($con, $op);
+        $no_of_rows = mysqli_num_rows($op);
+        return [$no_of_rows, $op];
     }
     /** discounts */
     public static function addDiscount($con, $product_id, $percent, $expiry_date){

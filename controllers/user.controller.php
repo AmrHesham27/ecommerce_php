@@ -8,10 +8,11 @@ class User {
         SQL::insert(
             $con, 
             'users', 
-            '(userName, email, password, phoneNumber, gender, userType)',
+            '(userName, email, phoneNumber ,userPassword, gender, userType)',
             "('$userName','$email','$phoneNumber', '$password', '$gender', '$userType')",
             'You were registered successfully'
         );
+        header("Location: index.php");
     }
     public static function editUser($con, $userName, $email, $phoneNumber, $gender){
         Auth::checkLogin();

@@ -19,7 +19,7 @@ class Validation {
             self::$errors['email'] = "please enter valid email";
         }
     }
-    public static function validateDate ($value) {
+    public static function validateDate ($name, $value) {
         $test_arr  = explode('-', $value);
         if (!checkdate($test_arr[1], $test_arr[2], $test_arr[0])) {
             self::$errors['Date'] = "please enter valid Date";
@@ -27,6 +27,15 @@ class Validation {
     }
     public static function filterData ($value) {
         return stripslashes(strip_tags(trim( $value )));
+    }
+    public static function checkNumber($name, $value){
+        if(!is_numeric($value)){
+            self::$errors[$name] = "$name has to be a valid number";
+            return;
+        }
+        else {
+            return str_replace(array('[',']'), '', $value);
+        }
     }
     
 }

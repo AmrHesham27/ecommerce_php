@@ -34,7 +34,7 @@ class Product {
     public static function showCategories($con){
         $result = SQL::read(
             $con,
-            'category_name',
+            '*',
             'categories',
             '1=1'
         );
