@@ -1,6 +1,5 @@
 <?php
     ob_start();
-    session_start();
     require_once 'components/header.php';
     require_once 'components/nav.php';
     require_once './helpers/validation.php';

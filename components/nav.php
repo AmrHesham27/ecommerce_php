@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!-- header section strats -->
 <header class="header_section">
     <div class="container">
@@ -11,24 +14,17 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Pages <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="about.php">About</a></li>
-                        <li><a href="testimonial.php">Testimonial</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.php">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="product.php">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog_list.php">Blog</a>
+                    <a class="nav-link" href="products.php">Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="cart.php">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                             <g>
                             <g>

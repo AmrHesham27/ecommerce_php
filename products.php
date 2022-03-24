@@ -1,6 +1,5 @@
 <?php
    require_once 'components/header.php';
-
    require_once './db/db.controller.php';
    require_once './db/db.connection.php';
    // logic start
