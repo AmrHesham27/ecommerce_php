@@ -5,15 +5,14 @@
    require './db/db.connection.php';
 
    /* logic start */
-   Auth::checkSeller();
-
-   if( isset($_GET['delete']) ){
-      Seller::deleteProduct($con, $_GET['delete']);
-   }
-
-   $result = Seller::showSellerProducts($con);
-   $no_of_products = $result[0];
-   $op = $result[1];
+   Auth::checkCustomer();
+   $user_id = $_SESSION['userId'];
+   $sql = " select c.quantity, p.*, d.percent, d.expiry_date from products AS p 
+   left join cart_items AS c on p.id = c.product_id
+   left join discounts As d on p.id = d.product_id 
+   where c.client_id=$user_id";
+   $result = SQL::doQuery($con, $sql);
+   $no_of_products = mysqli_num_rows($result);
    /* logic end */
 
    require_once 'components/header.php'; 
@@ -24,7 +23,7 @@
    <div class="container">
       <div class="heading_container heading_center">
          <h2>
-            Your <span>products</span>
+            Your <span>Cart</span>
          </h2>
       </div>
       <div class="row">
@@ -35,7 +34,7 @@
                      </div>';
             } 
             else {
-               while($row = mysqli_fetch_assoc($op)){
+               while($row = mysqli_fetch_assoc($result)){
                   $final_price = $row['price'];
                   if($row['percent'])
                      $final_price = $row['price'] * $row['percent'] / 100;

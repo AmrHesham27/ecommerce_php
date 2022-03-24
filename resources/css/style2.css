@@ -16,3 +16,7 @@
     background-color: #ffffff;
     border: 1px solid #f7444e;
 }
+
+a {
+    text-decoration: none;
+}

@@ -22,7 +22,7 @@ class Seller {
         SQL::delete(
             $con, 
             'products',
-            "product_id = '$productId' AND seller_id = '$user_id'",
+            "id = '$productId' AND seller_id = '$user_id'",
             'Your product was deleted successfully'
         );
     }
@@ -41,10 +41,10 @@ class Seller {
         Auth::checkSeller();
         $user_id = $_SESSION['userId'];
         $today = date("Ymd");
-        $sql = "SELECT * FROM products 
+        $sql = "SELECT p.*, r.percent FROM products AS p 
         LEFT JOIN (SELECT * FROM discounts WHERE expiry_date > '$today') AS r
-        ON products.id = r.product_id
-        WHERE products.seller_id = $user_id";
+        ON p.id = r.product_id
+        WHERE p.seller_id = $user_id";
         $op =  mysqli_query($con,$sql);
         SQL::checkQuery($con, $op);
         $no_of_rows = mysqli_num_rows($op);

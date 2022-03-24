@@ -34,7 +34,8 @@ class Validation {
             return;
         }
         else {
-            return str_replace(array('[',']'), '', $value);
+            $value = strval($value);
+            return str_replace('-', '', $value);
         }
     }
     public static function checkPhone ($value) {

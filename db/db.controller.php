@@ -7,6 +7,11 @@ class SQL {
             exit();
         };
     }
+    public static function doQuery($con, $sql){
+        $result = mysqli_query($con, $sql);
+        self::checkQuery($con, $result);
+        return $result;
+    }
     public static function insert($con, $table, $columns, $values, $successMssg = null){
         $sql = "INSERT INTO $table $columns VALUES $values"; 
         $op =  mysqli_query($con,$sql);

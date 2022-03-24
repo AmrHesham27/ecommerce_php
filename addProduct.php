@@ -43,6 +43,11 @@
 ?>
 <section class="why_section layout_padding">
     <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Add <span>Product</span>
+            </h2>
+        </div>
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 <div class="full">
