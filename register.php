@@ -1,4 +1,5 @@
 <?php
+require_once './components/header.php';
 
 require_once './db/db.connection.php';
 require_once './helpers/validation.php';
@@ -40,7 +41,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(count(Validation::$errors)== 0)
         User::register($con, $name, $email, $phone, $password, $gender, $userType);
 }
-require_once './components/header.php';
 ?>
 <div class="row row col-sm-12 col-lg-6 mx-auto mt-5">
     <div class="form-holder  ">

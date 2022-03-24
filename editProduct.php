@@ -1,4 +1,7 @@
 <?php
+    require_once 'components/header.php'; 
+    require_once 'components/nav.php';
+
     require_once './controllers/seller.controller.php';
     require_once './controllers/product.controller.php';
     require_once './auth/auth.php';
@@ -87,9 +90,6 @@
     $product_row = mysqli_fetch_assoc($op_product);
     $_SESSION['product_row'] = $product_row;
     /* logic end */
-
-    require_once 'components/header.php'; 
-    require_once 'components/nav.php';
 ?>
 <section class="why_section layout_padding">
     <div class="container">

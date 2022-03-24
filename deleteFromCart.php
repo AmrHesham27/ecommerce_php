@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once './controllers/customer.controller.php';
     require_once './auth/auth.php';
     require './db/db.connection.php';

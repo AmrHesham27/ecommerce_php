@@ -1,4 +1,7 @@
 <?php
+   require_once 'components/header.php'; 
+   require_once 'components/nav.php';
+
    require_once './controllers/seller.controller.php';
    require_once './auth/auth.php';
    require './db/db.connection.php';
@@ -14,9 +17,6 @@
    $no_of_products = $result[0];
    $op = $result[1];
    /* logic end */
-
-   require_once 'components/header.php'; 
-   require_once 'components/nav.php';
 ?>
 <!-- products section -->
 <section class="product_section layout_padding">
