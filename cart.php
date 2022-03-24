@@ -3,6 +3,7 @@
    require_once './controllers/seller.controller.php';
    require_once './auth/auth.php';
    require './db/db.connection.php';
+   require './helpers/validation.php';
 
    /* logic start */
    Auth::checkCustomer();
@@ -46,8 +47,11 @@
                               <a href=deleteFromCart.php?id=".$row['id']." class='option1'>
                                  Delete
                               </a>
-                              <a href = editProduct.php?edit=".$row['id']." class='option2'>
-                                 Edit
+                              <a href = editCart.php?s=plus&id=".$row['id']."&q=".$row['quantity']." class='option2'>
+                                 +
+                              </a>
+                              <a href = editCart.php?s=minus&id=".$row['id']."&q=".$row['quantity']." class='option2'>
+                                 -
                               </a>
                            </div>
                         </div>
@@ -62,7 +66,7 @@
                               ".$final_price."
                            </h6>
                            <h6>
-                              quantity : ".$row['quantity']."
+                              Qty: ".$row['quantity']."
                            </h6>
                         </div>
                      </div>

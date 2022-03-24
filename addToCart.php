@@ -17,11 +17,11 @@
     $data = mysqli_fetch_assoc($result);
     var_dump($data);
     if (!$data){
-        if( $data['client_id'] != $user_id )
-            exit();
         Customer::addCartItem($con, $product_id, 1);
     }
     else {
+        if( $data['client_id'] != $user_id )
+            exit();
         $quantity = $data['quantity'] + 1;
         Customer::editCartItem($con, $product_id, $quantity);
     }
