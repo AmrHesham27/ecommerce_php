@@ -5,7 +5,7 @@
    require_once './db/db.connection.php';
    // logic start
    $today = date("Ymd");
-   $sql = "SELECT * from products AS p 
+   $sql = "SELECT p.*, d.percent, d.expiry_date from products AS p 
    LEFT JOIN discounts AS d 
    ON p.id = d.product_id
    ";
@@ -56,11 +56,11 @@
                      <div class='box'>
                         <div class='option_container'>
                            <div class='options'>
-                              <a href=".$_SERVER['PHP_SELF']."?delete=".$row['id']." class='option1'>
-                                 Delete
+                              <a href = addToCart.php?id=".$row['id']." class='option1'>
+                                 Add to Cart
                               </a>
-                              <a href = editProduct.php?edit=".$row['id']." class='option2'>
-                                 Edit
+                              <a href = addToCart.php?id=".$row['id']." class='option2'>
+                                 Buy Now
                               </a>
                            </div>
                         </div>
@@ -83,7 +83,7 @@
             </div>        
             <div class="btn-box">
                <a href="">
-               View All products
+                  View All products
                </a>
             </div>
          </div>

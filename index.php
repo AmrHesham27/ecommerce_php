@@ -1,4 +1,5 @@
 <?php
+   session_start();
    require_once 'components/header.php';
 ?>
       <div class="hero_area">

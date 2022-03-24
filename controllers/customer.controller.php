@@ -51,8 +51,7 @@ class Customer {
         SQL::delete(
             $con,
             'cart_items',
-            "product_id = '$product_id' AND client_id = '$user_id'",
-            'Item was deleted'
+            "product_id = '$product_id' AND client_id = '$user_id'"
         );
     }
     public static function editCartItem( $con, $product_id, $quantity ){

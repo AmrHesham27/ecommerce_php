@@ -43,7 +43,7 @@
                      <div class='box'>
                         <div class='option_container'>
                            <div class='options'>
-                              <a href=".$_SERVER['PHP_SELF']."?delete=".$row['id']." class='option1'>
+                              <a href=deleteFromCart.php?id=".$row['id']." class='option1'>
                                  Delete
                               </a>
                               <a href = editProduct.php?edit=".$row['id']." class='option2'>
@@ -61,6 +61,9 @@
                            <h6>
                               ".$final_price."
                            </h6>
+                           <h6>
+                              quantity : ".$row['quantity']."
+                           </h6>
                         </div>
                      </div>
                   </div> 
@@ -71,7 +74,7 @@
       </div>
    </div>                     
    <div class="btn-box">
-      <a href="addProduct.php">
+      <a href="products.php">
          Add a product
       </a>
    </div>

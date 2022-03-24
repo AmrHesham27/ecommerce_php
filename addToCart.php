@@ -1,5 +1,6 @@
 <?php
-    require_once './controllers/seller.controller.php';
+    session_start();
+    require_once './controllers/customer.controller.php';
     require_once './auth/auth.php';
     require './db/db.connection.php';
 
@@ -10,17 +11,19 @@
     // check if user already have this cart
     $sql = "SELECT c.* FROM products AS p
     LEFT JOIN cart_items AS c 
-    ON p.id = c.product_id WHERE c.client_id = $user_id;
-    ";
+    ON p.id = c.product_id 
+    WHERE c.client_id = $user_id AND c.product_id = $product_id;";
     $result = SQL::doQuery($con, $sql);
     $data = mysqli_fetch_assoc($result);
-    if ($data == null){
+    var_dump($data);
+    if (!$data){
         if( $data['client_id'] != $user_id )
             exit();
         Customer::addCartItem($con, $product_id, 1);
     }
     else {
-        $quantity = $data['quantity'];
-        Customer::editCartItem($con, $product_id, $quantity + 1);
+        $quantity = $data['quantity'] + 1;
+        Customer::editCartItem($con, $product_id, $quantity);
     }
+    header("Location: cart.php");
 ?>
